@@ -13,7 +13,7 @@ int main()
     cout<<a+b<<endl;
 
     for (int i = 0; i < a; i++){
-        cout << "soy el numero: " + char(i) << endl;
+        cout << "soy el numero: " << i << endl;
     }
 
     return 0;
