@@ -8,17 +8,20 @@ struct Alumno
 };
 
 
-int main(){
+int main()
+{
 
-    Alumno ian;
+    pedirUnUsuarioAlumno();
+    return 0;
+}
+
+Alumno pedirUnUsuarioAlumno()
+{
     cout << "ingresar el nombre" << endl;
     cin >> ian.nombre;
-    
 
-    cout << "ingresar el legajo" << endl;
+    cout << "ingresar el " << endl;
     cin >> ian.legajo;
-    
-    cout << ian.nombre << " " << ian.legajo << endl;
 
-    return 0;
+    cout << ian.nombre << " " << ian.legajo << endl;
 }
