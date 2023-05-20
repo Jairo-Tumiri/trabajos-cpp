@@ -1,27 +1,33 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct Alumno
+struct Persona
 {
+    string carrera;
     string nombre;
     int legajo;
 };
 
+Persona crearPersona()
+{
+    Persona alumno;
+    cout << "ingresar el sector"<< endl;
+    getline(cin,alumno.carrera);
+    cin >> alumno.carrera;
+    cout << "ingresar el nombre en la carrera de "+ alumno.carrera << endl;
+    cin >> alumno.nombre;
+    cout << "ingresar el legajo" << endl;
+    cin >> alumno.legajo;
+    return alumno;
+}
+
 
 int main()
 {
+    Persona Estudiante;
+    Estudiante = crearPersona();
 
-    pedirUnUsuarioAlumno();
-    return 0;
-}
-
-Alumno pedirUnUsuarioAlumno()
-{
-    cout << "ingresar el nombre" << endl;
-    cin >> ian.nombre;
-
-    cout << "ingresar el " << endl;
-    cin >> ian.legajo;
-
-    cout << ian.nombre << " " << ian.legajo << endl;
+    cout << "el alumno es " + Estudiante.nombre + " con el legajo "<<Estudiante.legajo<<" en la carrera de "+ Estudiante.carrera <<  endl;
+    return 0; 
 }
