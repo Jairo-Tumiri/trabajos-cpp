@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 struct Alumno
 {
+    string carrera;
     string nombre;
     int legajo;
 };
@@ -21,7 +23,6 @@ void pedirUnUsuarioAlumno()
 
     cout << "ingresar el nombre" << endl;
     cin >> ian.nombre;
-    getline(cin,ian.nombre);
     cout << "ingresar el legajo 12 1 21 " << endl;
     cin >> ian.legajo;
 
