@@ -2,29 +2,54 @@
 #include <string>
 using namespace std;
 
-struct Alumno
+struct alumnos
 {
     string carrera;
     string nombre;
     int legajo;
 };
+struct profesores
+{
+    string nombre;
+    int edad;
+    string materia;
+};
+struct Personas{
+    alumnos Alumno;
+    profesores Profesor;
+};
 
-void pedirUnUsuarioAlumno();
-
+alumnos agregaralumno();
 int main()
 {
-    pedirUnUsuarioAlumno();
+
+    alumnos persona[5];
+
+    persona[0] = agregaralumno();
+
+    cout << persona[0].nombre << persona[0].legajo << persona[0].carrera << endl;
     return 0;
 }
 
-void pedirUnUsuarioAlumno()
-{
-    Alumno ian = Alumno();
+alumnos agregaralumno(){
 
-    cout << "ingresar el nombre" << endl;
-    cin >> ian.nombre;
-    cout << "ingresar el legajo 12 1 21 " << endl;
-    cin >> ian.legajo;
+    Personas p1;
 
-    cout << ian.nombre << " " << ian.legajo << endl;
-};
+    cin >> p1.Alumno.nombre;
+    cin >> p1.Alumno.legajo;
+    cin >> p1.Alumno.carrera;
+
+    return p1.Alumno;
+
+}
+// void pedirUnUsuarioAlumno()
+// {
+//     Alumno ian = Alumno();
+
+//     cout << "ingresar el nombre" << endl;
+//     cin >> ian.nombre;
+//     cout << "ingresar el legajo 12 1 21 " << endl;
+//     cin >> ian.legajo;
+
+//     cout << ian.nombre << " " << ian.legajo << endl;
+// };
