@@ -1,4 +1,0 @@
-Estructuras :  (PROXIMO CUATRIMESTRE)
-- indexadas
-- enlazadas
-- almacenadas fisico
