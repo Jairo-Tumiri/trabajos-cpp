@@ -15,13 +15,13 @@ struct Libros
 
 void crearElArcivo(FILE *);
 int librosPorGenero(FILE *, string);
-string libroMasAntiguo(FILE);
+string libroMasAntiguo(FILE *);
 
 int main()
 {
-    int option;
+    int option, cantidad_inventario;
     string genero_buscar;
-    FILE *archivo = fopen("libros.dat", "wb");
+    FILE *archivo;
     crearElArcivo(archivo);
 
     cout << "seleccionar opcion" << endl;
@@ -30,9 +30,12 @@ int main()
     switch (option)
     {
     case 1:
+        cin.ignore(10000, '\n');
         cout << "nombre del genero" << endl;
         getline(cin, genero_buscar);
-        librosPorGenero(archivo, genero_buscar);
+        cantidad_inventario = librosPorGenero(archivo, genero_buscar);
+        cout << "cantidad_inventario: " << cantidad_inventario << endl;
+        system("pause");
         break;
     case 2:
         libroMasAntiguo(archivo);
@@ -46,59 +49,65 @@ int main()
 
 void crearElArcivo(FILE *file)
 {
-    Libros newBook;
-    // cin.ignore(100, '\n');
-    cout << "titulo" << endl;
-    getline(cin, newBook.titulo);
-    cout << "autor" << endl;
-    getline(cin, newBook.autor);
-    cout << "año publiblicacion" << endl;
-    cin >> newBook.anio_publicacion;
-    cout << "genero" << endl;
-    getline(cin, newBook.genero);
-    cout << "cantidad inventario" << endl;
-    cin >> newBook.cant_inv;
-
+    file = fopen("libros.dat", "a+");
     if (file != NULL)
     {
+        Libros newBook;
+        cout << "titulo" << endl;
+        getline(cin, newBook.titulo);
+        cout << "autor" << endl;
+        getline(cin, newBook.autor);
+        cout << "anio publicacion" << endl;
+        cin >> newBook.anio_publicacion;
+        cin.ignore(10000, '\n');
+        cout << "genero" << endl;
+        getline(cin, newBook.genero);
+        cout << "cantidad inventario" << endl;
+        cin >> newBook.cant_inv;
+
         fwrite(&newBook, sizeof(Libros), 1, file);
         fclose(file);
     }
 };
 int librosPorGenero(FILE *file, string genero_buscar)
 {
+
     Libros countLibro;
-    int count;
-    while (fread(&countLibro, sizeof(Libros), 1, file) == 1)
+    int count = 0;
+    file = fopen("libros.dat", "rb");
+    if (file != NULL)
     {
-        if (countLibro.genero == genero_buscar)
+        while (fread(&countLibro, sizeof(Libros), 1, file) == 1)
         {
-            count++;
+            // cout << "=============" << endl;
+            // cout << countLibro.genero << endl;
+            if (genero_buscar.compare(countLibro.genero))
+            {
+                count++;
+            }
         }
+        fclose(file);
     }
     return count;
 };
 string libroMasAntiguo(FILE *file)
 {
+    file = fopen("libros.dat", "rd");
     string titulo_antiguo;
     Libros fechaLibro;
-    int auxMax = 0, fecha, auxMin = 0;
 
-    // 9 ,2, 4, 5 ,9
-    while (fread(&fechaLibro, sizeof(Libros), 1, file) == 1)
-    {
-        //   2 |  9
-        if (fechaLibro.anio_publicacion > auxMax)
-        {
-            if (fechaLibro.anio_publicacion < auxMax)
-            {
-                auxMin = fechaLibro.anio_publicacion;
-            }
-            else
-            {
-                auxMax = fechaLibro.anio_publicacion;
-            }
-        }
-    }
+    int mayor = 0;
+    int menor = 0;
+
+    // // 9 ,2, 4, 5 , 1, 10
+    // while (fread(&fechaLibro, sizeof(Libros), 1, file) == 1)
+    //     mayor = menor = fechaLibro.anio_publicacion;
+    // {
+    //     if (fechaLibro.anio_publicacion > mayor)
+    //         mayor = fechaLibro.anio_publicacion;
+    //     if (fechaLibro.anio_publicacion < menor)
+    //         menor = fechaLibro.anio_publicacion;
+    // };
+    // fclose(file);
     return titulo_antiguo;
 };
