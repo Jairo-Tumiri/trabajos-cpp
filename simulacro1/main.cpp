@@ -1,4 +1,9 @@
 #include <iostream>
+
+#include <stdio.h>
+
+
+//armame un programa en c++ que 
 using namespace std;
 
 struct Vendedor
@@ -141,4 +146,6 @@ void mostrarRankingDeHamburguesasVendidasEnUnMes(FILE *file, int mes)
             }
         }
     }
+
+    
 };
