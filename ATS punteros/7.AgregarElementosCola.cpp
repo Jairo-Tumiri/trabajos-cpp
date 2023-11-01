@@ -36,7 +36,7 @@ int main()
     Nodo *frente = nullptr;
     Nodo *final = nullptr;
     // Encolar elementos
-    encolar(frente, final, 100 );
+    encolar(frente, final, 100);
     encolar(frente, final, 22);
     encolar(frente, final, 31);
     encolar(frente, final, 26);
@@ -52,16 +52,20 @@ int main()
     std::cout << std::endl;
     return 0;
 }
-Nodo *crearNodo(int valor)
+
+// Nodo *crearNodo(int valor)
+// {
+//     Nodo *nuevoNodo = new Nodo;
+//     nuevoNodo->dato = valor;
+//     nuevoNodo->siguiente = nullptr;
+//     return nuevoNodo;
+// }
+void encolar(Nodo *&frente, Nodo *&final, int valor)
 {
     Nodo *nuevoNodo = new Nodo;
     nuevoNodo->dato = valor;
     nuevoNodo->siguiente = nullptr;
-    return nuevoNodo;
-}
-void encolar(Nodo *&frente, Nodo *&final, int valor)
-{
-    Nodo *nuevoNodo = crearNodo(valor);
+
     if (final == nullptr)
     {
         frente = final = nuevoNodo;
